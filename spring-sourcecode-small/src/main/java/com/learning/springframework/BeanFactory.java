@@ -1,5 +1,6 @@
 package com.learning.springframework;
 
+import com.learning.springframework.beans.factory.BeansException;
 import com.learning.springframework.beans.factory.config.BeanDefinition;
 
 import java.util.Map;
@@ -12,14 +13,16 @@ import java.util.concurrent.ConcurrentHashMap;
  * @Date: 2022/7/4 13:49
  */
 
-public class BeanFactory {
-	private Map<String,BeanDefinition> beanDefinitionMap = new ConcurrentHashMap<>();
+public interface BeanFactory {
 
-	public Object getBean(String beanName) {
-		return beanDefinitionMap.get(beanName).getBean();
-	}
-
-	public void registerBeanDefinition(String name,BeanDefinition beanDefinition) {
-		beanDefinitionMap.put(name, beanDefinition);
-	}
+	Object getBean(String beanName) throws BeansException;
+	// private Map<String,BeanDefinition> beanDefinitionMap = new ConcurrentHashMap<>();
+	//
+	// public Object getBean(String beanName) {
+	// 	return beanDefinitionMap.get(beanName).getBean();
+	// }
+	//
+	// public void registerBeanDefinition(String name,BeanDefinition beanDefinition) {
+	// 	beanDefinitionMap.put(name, beanDefinition);
+	// }
 }

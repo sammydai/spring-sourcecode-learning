@@ -14,9 +14,7 @@ public class BeanDefinition {
 		this.beanClass = beanClass;
 	}
 
-
-
-	// public BeanDefinition(Object bean) {
-	// 	this.bean = bean;
-	// }
+	public Class getBeanClass() {
+		return beanClass;
+	}
 }
