@@ -42,4 +42,16 @@ public class ApiTest {
 		System.out.println("===userService_singleton:"+userService_singleton);
 	}
 
+	@Test
+	public void test_BeanFactory2() throws BeansException {
+		//1、创建工厂
+		DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
+		//2、
+		BeanDefinition beanDefinition = new BeanDefinition(UserService.class);
+		beanFactory.registerBeanDefinition("userService", beanDefinition);
+		//3、
+		UserService userService = (UserService) beanFactory.getBean("userService", "晓明哥");
+		userService.queryUserInfo();
+	}
+
 }
