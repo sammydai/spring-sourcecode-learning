@@ -1,6 +1,6 @@
-package learning.service;
+package com.learning.service;
 
-import learning.spring.ComponentScan;
+import com.learning.spring.ComponentScan;
 
 /**
  * @Package: com.learning.service

@@ -1,4 +1,4 @@
-package learning.spring;
+package com.learning.spring;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

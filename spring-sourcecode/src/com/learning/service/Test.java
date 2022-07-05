@@ -1,6 +1,6 @@
-package learning.service;
+package com.learning.service;
 
-import learning.spring.SourceApplicationContext;
+import com.learning.spring.SourceApplicationContext;
 
 /**
  * @Package: com.learning.service
@@ -12,7 +12,7 @@ import learning.spring.SourceApplicationContext;
 public class Test {
 	public static void main(String[] args) {
 		SourceApplicationContext context = new SourceApplicationContext(AppConfig.class);
-		UserService userService = (UserService) context.getBean("userService");
+		// UserService userService = (UserService) context.getBean("userService");
 
 	}
 }
