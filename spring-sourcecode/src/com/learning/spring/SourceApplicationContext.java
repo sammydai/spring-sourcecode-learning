@@ -99,6 +99,12 @@ public class SourceApplicationContext {
 					field.set(instance,getBean(field.getName()));
 				}
 			}
+			//Aware
+			if (instance instanceof BeanNameAware) {
+				System.out.println("回调这个beannameaware的方法");
+				((BeanNameAware)instance).setBeanName(beanName);
+			}
+
 			return instance;
 		} catch (InstantiationException e) {
 			e.printStackTrace();
