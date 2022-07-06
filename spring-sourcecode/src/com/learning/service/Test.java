@@ -12,7 +12,7 @@ import com.learning.spring.SourceApplicationContext;
 public class Test {
 	public static void main(String[] args) {
 		SourceApplicationContext context = new SourceApplicationContext(AppConfig.class);
-		// UserService userService = (UserService) context.getBean("userService");
-
+		UserService userService = (UserService) context.getBean("userService");
+		userService.test();
 	}
 }
