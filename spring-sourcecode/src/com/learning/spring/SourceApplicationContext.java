@@ -5,6 +5,7 @@ import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -20,7 +21,7 @@ public class SourceApplicationContext {
 
 	private ConcurrentHashMap<String,BeanDefinition> beanDefinitionMap = new ConcurrentHashMap<>();
 	private ConcurrentHashMap<String, Object> singletonObjects = new ConcurrentHashMap<>();
-
+	private ArrayList<BeanPostProcessor> beanPostProcessorList = new ArrayList<>();
 
 	public SourceApplicationContext(Class configClass) {
 		this.configClass = configClass;
@@ -49,6 +50,14 @@ public class SourceApplicationContext {
 							//2、扫描有Component注解的对象
 							Class<?> clazz = classLoader.loadClass(className);
 							if (clazz.isAnnotationPresent(Component.class)) {
+
+								//添加bean process处理对象
+								//clazz是不是由BeanPostProcessor派生出来的
+								if (BeanPostProcessor.class.isAssignableFrom(clazz)) {
+									//创建这个processor，加入到list中
+									BeanPostProcessor beanPostProcessor = (BeanPostProcessor) clazz.newInstance();
+									beanPostProcessorList.add(beanPostProcessor);
+								}
 								//如何判断一个Bean是单例or多例
 								Component componentAnnotation = clazz.getAnnotation(Component.class);
 
@@ -71,6 +80,10 @@ public class SourceApplicationContext {
 								beanDefinitionMap.put(beanName, beanDefinition);
 							}
 						} catch (ClassNotFoundException e) {
+							e.printStackTrace();
+						} catch (IllegalAccessException e) {
+							e.printStackTrace();
+						} catch (InstantiationException e) {
 							e.printStackTrace();
 						}
 					}
@@ -99,10 +112,27 @@ public class SourceApplicationContext {
 					field.set(instance,getBean(field.getName()));
 				}
 			}
-			//Aware
+			//Aware，这个是Spring自己来实现的方法
 			if (instance instanceof BeanNameAware) {
 				System.out.println("回调这个beannameaware的方法");
 				((BeanNameAware)instance).setBeanName(beanName);
+			}
+
+
+			//初始化前操作
+			for (BeanPostProcessor beanPostProcessor : beanPostProcessorList) {
+				instance = beanPostProcessor.postProcessBeforeInitialization(beanName,instance);
+			}
+
+			//初始化操作,Spring只是调用这个初始化方法
+			if (instance instanceof InitializingBean) {
+				System.out.println("调用初始化方法");
+				((InitializingBean)instance).afterPropertiesSet();
+			}
+
+			//初始化后操作
+			for (BeanPostProcessor beanPostProcessor : beanPostProcessorList) {
+				instance = beanPostProcessor.postProcessAfterInitialization(beanName,instance);
 			}
 
 			return instance;

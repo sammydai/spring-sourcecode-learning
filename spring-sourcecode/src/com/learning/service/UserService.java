@@ -11,7 +11,7 @@ import com.learning.spring.*;
 @Component(value = "userService")
 // @Scope(value = "prototype")
 // @Scope(value = "singleton")
-public class UserService implements BeanNameAware,InitializingBean {
+public class UserService implements BeanNameAware,InitializingBean,UserInterface {
 
 	@Autowired
 	private OrderService orderService;

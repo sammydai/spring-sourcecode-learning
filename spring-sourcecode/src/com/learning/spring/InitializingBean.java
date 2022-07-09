@@ -8,5 +8,7 @@ package com.learning.spring;
  */
 
 public interface InitializingBean {
+
 	public void afterPropertiesSet();
+
 }
