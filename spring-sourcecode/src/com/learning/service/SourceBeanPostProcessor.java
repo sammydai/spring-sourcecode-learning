@@ -31,8 +31,10 @@ public class SourceBeanPostProcessor implements BeanPostProcessor {
 			Object proxyInstance = Proxy.newProxyInstance(SourceBeanPostProcessor.class.getClassLoader(), bean.getClass().getInterfaces(), new InvocationHandler() {
 				@Override
 				public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+					//执行切面逻辑
 					System.out.println("切面逻辑");
-					return null;
+					//执行test方法
+					return method.invoke(bean,args);
 				}
 			});
 
