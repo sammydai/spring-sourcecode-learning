@@ -21,6 +21,7 @@ public class SimpleInstantiationStrategy implements InstantiationStrategy {
 		Class clazz = beanDefinition.getBeanClass();
 		try {
 			if (null != constructor) {
+				//把入参信息传递给 newInstance 进行实例化。
 				return clazz.getDeclaredConstructor(constructor.getParameterTypes()).newInstance(args);
 			} else {
 				return clazz.getDeclaredConstructor().newInstance();

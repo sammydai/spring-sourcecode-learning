@@ -1,10 +1,6 @@
 package com.learning.springframework;
 
-import com.learning.springframework.beans.factory.BeansException;
-import com.learning.springframework.beans.factory.config.BeanDefinition;
-
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import com.learning.springframework.beans.BeansException;
 
 /**
  * @Package: com.learning.springframework
@@ -18,6 +14,8 @@ public interface BeanFactory {
 	Object getBean(String beanName) throws BeansException;
 
 	Object getBean(String beanName, Object... args) throws BeansException;
+
+	<T> T getBean(String beanName, Class<T> requiredType);
 
 	// private Map<String,BeanDefinition> beanDefinitionMap = new ConcurrentHashMap<>();
 	//

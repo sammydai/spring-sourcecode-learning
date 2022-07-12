@@ -1,4 +1,4 @@
-package com.learning.springframework.beans.factory;
+package com.learning.springframework.beans;
 
 /**
  * @Package: com.learning.springframework.beans.factory
@@ -8,6 +8,7 @@ package com.learning.springframework.beans.factory;
  */
 
 public class BeansException extends RuntimeException {
+
 	public BeansException(String msg) {
         super(msg);
     }

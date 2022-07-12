@@ -17,6 +17,13 @@ public interface BeanFactory {
 
 	Object getBean(String beanName) throws BeansException;
 
+	/**
+	 * 把构造函数的入参信息传递到实例化操作里
+	 * @param beanName
+	 * @param args
+	 * @return
+	 * @throws BeansException
+	 */
 	Object getBean(String beanName, Object... args) throws BeansException;
 
 	// private Map<String,BeanDefinition> beanDefinitionMap = new ConcurrentHashMap<>();

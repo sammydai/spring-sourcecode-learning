@@ -26,6 +26,13 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
 		return doGetBean(beanName, null);
 	}
 
+	/**
+	 * 把构造函数的入参信息传递到实例化操作里
+	 * @param beanName
+	 * @param args
+	 * @return
+	 * @throws BeansException
+	 */
 	@Override
 	public Object getBean(String beanName, Object... args) throws BeansException {
 		return doGetBean(beanName,args);

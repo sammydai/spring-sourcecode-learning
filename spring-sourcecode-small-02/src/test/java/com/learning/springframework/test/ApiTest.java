@@ -2,9 +2,8 @@ package com.learning.springframework.test;
 
 import com.learning.springframework.beans.PropertyValue;
 import com.learning.springframework.beans.PropertyValues;
-import com.learning.springframework.beans.factory.BeansException;
+import com.learning.springframework.beans.BeansException;
 import com.learning.springframework.beans.factory.config.BeanDefinition;
-import com.learning.springframework.BeanFactory;
 import com.learning.springframework.beans.factory.config.BeanReference;
 import com.learning.springframework.beans.factory.support.DefaultListableBeanFactory;
 import com.learning.springframework.test.bean.UserDao;

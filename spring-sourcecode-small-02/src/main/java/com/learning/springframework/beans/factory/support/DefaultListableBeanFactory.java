@@ -1,6 +1,7 @@
 package com.learning.springframework.beans.factory.support;
 
-import com.learning.springframework.beans.factory.BeansException;
+import com.learning.springframework.beans.BeansException;
+import com.learning.springframework.beans.factory.ConfigurableListableBeanFactory;
 import com.learning.springframework.beans.factory.config.BeanDefinition;
 
 import java.util.HashMap;
@@ -13,12 +14,12 @@ import java.util.Map;
  * @Date: 2022/7/4 18:44
  */
 
-public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFactory implements BeanDefinitionRegistry {
+public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFactory implements BeanDefinitionRegistry,ConfigurableListableBeanFactory {
 
 	private Map<String, BeanDefinition> beanDefinitionMap = new HashMap<>();
 
 	@Override
-	protected BeanDefinition getBeanDefinition(String beanName) throws BeansException {
+	public BeanDefinition getBeanDefinition(String beanName) throws BeansException {
 		BeanDefinition beanDefinition = beanDefinitionMap.get(beanName);
 		if (beanDefinition==null) throw new BeansException("No bean named '" + beanName + "' is defined");
 		return beanDefinition;
