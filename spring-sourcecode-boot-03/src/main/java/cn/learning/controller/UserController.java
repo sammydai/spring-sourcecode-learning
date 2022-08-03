@@ -17,8 +17,8 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	@GetMapping("/zhouyu")
+	@GetMapping("/aaa")
 	public void test() {
-		userService.test();
+
 	}
 }

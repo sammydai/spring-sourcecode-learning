@@ -1,5 +1,7 @@
 package cn.learning.service;
 
+import cn.learning.properties.MyProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,7 +14,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserService {
 
-	public String test() {
-		return "zhouyu";
+	/*
+	方法0:直接在变量上使用 @Value 注解
+	@Value("${password}")
+	private String password;
+	 */
+
+	@Autowired
+	private MyProperties myProperties;
+
+	public void test() {
+		System.out.println(myProperties.getPassword());
 	}
 }
